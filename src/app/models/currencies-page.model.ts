@@ -1,8 +1,8 @@
-import { IPage } from "./ipage";
-import { CurrenciesPageItem } from "./currencies-page-item.model";
+import { IPage } from './ipage';
+import { CurrenciesPageItem } from './currencies-page-item.model';
 
 export class CurrenciesPage implements IPage<CurrenciesPageItem> {
-    data         :CurrenciesPageItem[];
-    total        :number;
-    pages        :number;
+    data: CurrenciesPageItem[];
+    total: number;
+    pages: number;
 }

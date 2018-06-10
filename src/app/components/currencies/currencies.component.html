@@ -1,26 +1,35 @@
 <h1>Available currencies</h1>
 
-<div *ngIf="pageContent; else loading">
-  <table border="1">
-    <tr>
-      <th>#</th>
-      <th>Type</th>
-      <th>Symbol</th>
-    </tr>
-    <tr *ngFor="let c of pageContent.data">
-      <td>
-        {{c.id}}
-      </td>
-      <td>
-        {{c.type}}
-      </td>
-      <td>
-        {{c.symbol}}
-      </td>
-    </tr>
-  </table>
+<div class="row searchFilter">
+  <div class="col-sm-8">
+    <div class="input-group">
+      <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown">
+      <select class="form-control col-sm-2" id="exampleFormControlSelect1">
+        <option value="id">Id</option>
+        <option value="code">Code</option>
+        <option value="name">Name</option>
+        <option value="type">Type</option>
+      </select>
+    </div>
+  </div>
 </div>
-
 <ng-template #loading>
-  Getting currencies...
+  <h4>Getting currencies...</h4>
 </ng-template>
+<div *ngIf="pageContent; else loading">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2" *ngFor="let c of pageContent.data">
+        <div class="d-inline">
+          ID:&nbsp;{{c.id}}
+        </div>
+        <div class="d-inline">
+          Type:&nbsp;{{c.type}}
+        </div>
+        <div class="d-inline">
+          Symbol:&nbsp;{{c.symbol}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

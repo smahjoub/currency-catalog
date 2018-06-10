@@ -1,5 +1,5 @@
 export class CurrenciesPageItem {
-    id      :string;
-    type    :string;
-    symbol  :string;
+    id: string;
+    type: string;
+    symbol: string;
 }

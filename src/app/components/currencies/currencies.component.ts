@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrenciesService } from '../../services/currencies/currencies.service';
 import { CurrenciesPage } from '../../models/currencies-page.model';
 import { Observable } from 'rxjs';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-currencies',
   templateUrl: './currencies.component.html',
@@ -12,10 +12,10 @@ export class CurrenciesComponent implements OnInit {
 
   currentPage = 1;
   pageSize    = 200;
-  
-  pageContent:CurrenciesPage = null;
 
-  constructor(private currenciesSrv :CurrenciesService) { 
+  pageContent: CurrenciesPage = null;
+
+  constructor(private currenciesSrv: CurrenciesService) {
 
   }
 
