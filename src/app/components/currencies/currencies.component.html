@@ -1,3 +1,19 @@
-<p>
-  currencies works!
-</p>
+<div *ngIf="pageContent; else loading">
+  <table>
+    <tr *ngFor="let c of pageContent.data">
+      <td>
+        {{c.id}}
+      </td>
+      <td>
+        {{c.type}}
+      </td>
+      <td>
+        {{c.symbol}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<ng-template #loading>
+  Getting currencies...
+</ng-template>
