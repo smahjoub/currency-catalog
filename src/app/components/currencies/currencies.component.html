@@ -1,5 +1,12 @@
+<h1>Available currencies</h1>
+
 <div *ngIf="pageContent; else loading">
-  <table>
+  <table border="1">
+    <tr>
+      <th>#</th>
+      <th>Type</th>
+      <th>Symbol</th>
+    </tr>
     <tr *ngFor="let c of pageContent.data">
       <td>
         {{c.id}}
