@@ -1,14 +1,13 @@
 <h1>Available currencies</h1>
 
 <div class="row searchFilter">
-  <div class="col-sm-8">
+  <div class="col-sm-6">
     <div class="input-group">
-      <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown">
-      <select class="form-control col-sm-2" id="exampleFormControlSelect1">
-        <option value="id">Id</option>
-        <option value="code">Code</option>
-        <option value="name">Name</option>
-        <option value="type">Type</option>
+      <input type="text" class="form-control" [(ngModel)]="filter" (keyup)="doFilter($event.target.value, filterType)" [ngModelOptions]="{standalone: true}" >
+      <select class="form-control col-sm-2" (change)="filterType = $event.target.value; doFilter(filter, $event.target.value)">
+        <option *ngFor="let type of filterTypes" [value]="type">
+            {{type}}
+        </option>
       </select>
     </div>
   </div>
@@ -17,6 +16,9 @@
   <h4>Getting currencies...</h4>
 </ng-template>
 <div *ngIf="pageContent; else loading">
+  <div *ngIf="pageContent.length == 0">
+    <h4>No results found matching your criteria</h4>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2" *ngFor="let c of pageContent.data">

@@ -15,9 +15,9 @@ export class CurrenciesService {
 
   }
 
-  getCurrencies(pageNumber: number, pageSize: number): Observable<CurrenciesPage> {
+  getCurrencies(pageNumber: number, pageSize: number, filter: string = ''): Observable<CurrenciesPage> {
 
-    const url = `${this.apiUrl}?page[number]=${pageNumber}&page[size]=${pageSize}`;
+    const url = `${this.apiUrl}?page[number]=${pageNumber}&page[size]=${pageSize}${filter}`;
 
     return this.http.get(url)
     .pipe(
@@ -32,7 +32,7 @@ export class CurrenciesService {
 
     returnValue.data = [];
 
-    if (json.data != undefined) {
+    if (json.data !== undefined) {
       for (let i = 0; i < json.data.length; i++) {
         const pageItem    = new CurrenciesPageItem();
         pageItem.id     = json.data[i].id;
