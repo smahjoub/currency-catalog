@@ -16,8 +16,8 @@
   <h4>Getting currencies...</h4>
 </ng-template>
 <div *ngIf="pageContent; else loading">
-  <div *ngIf="pageContent.length == 0">
-    <h4>No results found matching your criteria</h4>
+  <div *ngIf="pageContent.data.length == 0">
+    <h4>No results found matching your criteria.</h4>
   </div>
   <div class="container">
     <div class="row">
