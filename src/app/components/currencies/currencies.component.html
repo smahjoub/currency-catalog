@@ -1,6 +1,6 @@
 <h1>Available currencies</h1>
 
-<div class="row searchFilter">
+<div class="row">
   <div class="col-sm-6">
     <div class="input-group">
       <input type="text" class="form-control" [(ngModel)]="filter" (keyup)="doFilter($event.target.value, filterType)" [ngModelOptions]="{standalone: true}" >
@@ -19,6 +19,7 @@
   <div *ngIf="pageContent.data.length == 0">
     <h4>No results found matching your criteria.</h4>
   </div>
+  
   <div class="container">
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 currency-item" (click)="getCurrencyDetails(c.id)"  *ngFor="let c of pageContent.data">
@@ -34,4 +35,18 @@
       </div>
     </div>
   </div>
+  <div class="row pagination-container" >
+      <div class="col-sm-1">
+        <select class="form-control" (change)="pageSize = $event.target.value; doFilter(filter, filterType);">
+            <option value=10>10</option>
+            <option value=100>100</option>
+            <option value=200>200</option>
+          </select>
+      </div>
+      <div class="col-sm-11">  
+        <ngb-pagination [collectionSize]="pageContent.total" [(page)]="currentPage" [maxSize]="5" [rotate]="true" [pageSize]="pageSize" (pageChange)="doFilter(filter, filterType);">
+        </ngb-pagination>
+      </div>
+    </div>
 </div>
+

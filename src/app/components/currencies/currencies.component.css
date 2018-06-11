@@ -12,3 +12,6 @@
   background-color: rgb(222, 226, 230);
   cursor: pointer;
 }
+.pagination-container{
+  margin-top: 20px;
+}

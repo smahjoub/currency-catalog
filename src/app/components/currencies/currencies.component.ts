@@ -14,7 +14,7 @@ export class CurrenciesComponent implements OnInit {
   readonly filterTypes = ['Id', 'Code', 'Name', 'Type'];
 
   currentPage = 1;
-  pageSize    = 200;
+  pageSize    = 10;
 
   pageContent: CurrenciesPage = null;
 
@@ -36,8 +36,6 @@ export class CurrenciesComponent implements OnInit {
   }
 
   doFilter(filter: string = '', filterType: string = this.filterTypes[0]) {
-    // clear current listing
-    this.pageContent = null;
 
     //build filter query string
     let queryString = '';
@@ -64,4 +62,5 @@ export class CurrenciesComponent implements OnInit {
     this.currenciesSrv.getCurrencies(this.currentPage, this.pageSize, queryString)
       .subscribe(data => this.pageContent = data);
   }
+
 }
