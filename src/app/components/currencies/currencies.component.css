@@ -1,3 +1,14 @@
 .searchFilter{
   margin-bottom: 20px;
 }
+
+.currency-item{
+  border-color: #808080;
+  border-left: 6px solid #ccc;
+  padding: 3px 3px 3px;
+  background-color: #EEE;
+}
+.currency-item:hover{
+  background-color: rgb(222, 226, 230);
+  cursor: pointer;
+}
