@@ -5,19 +5,28 @@ import { CurrenciesService } from './services/currencies/currencies.service';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CurrencyDetailComponent } from './components/currency-detail/currency-detail.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app.routes';
+import { CommonModule } from '@angular/common';
+import { AppComponent } from './components/app/app.component';
 
 @NgModule({
   declarations: [
-    CurrenciesComponent
+    CurrenciesComponent,
+    CurrencyDetailComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    CommonModule,
+    RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     ReactiveFormsModule
   ],
   providers: [CurrenciesService],
-  bootstrap: [CurrenciesComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

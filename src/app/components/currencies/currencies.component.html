@@ -21,7 +21,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 currency-item" *ngFor="let c of pageContent.data">
+      <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 currency-item" (click)="getCurrencyDetails(c.id)"  *ngFor="let c of pageContent.data">
         <div class="d-inline">
           ID:&nbsp;{{c.id}}
         </div>

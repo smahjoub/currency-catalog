@@ -1,0 +1,14 @@
+<div *ngIf="currencyDetails">
+  <h1>{{currencyDetails.id}}</h1>
+  <ul>
+    <li>Code:&nbsp;{{currencyDetails.code}}</li>
+    <li>Name:&nbsp;{{currencyDetails.name}}</li>
+    <li>Type:&nbsp;{{currencyDetails.currencyType}}</li>
+    <li>CodeISONumeric3:&nbsp;{{currencyDetails.codeISONumeric3}}</li>
+    <li>CodeISOAlpha3:&nbsp;{{currencyDetails.codeISOAlpha3}}</li>
+    <li>Symbol:&nbsp;{{currencyDetails._symbol}}</li>
+    <li>Native symbol:&nbsp;{{currencyDetails.nativeSymbol}}</li>
+    <li>DecimalE:&nbsp;{{currencyDetails.decimalE}}</li>
+    <li>Category:&nbsp;{{currencyDetails.category}}</li>
+  </ul>
+</div>

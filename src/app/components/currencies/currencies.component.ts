@@ -3,6 +3,7 @@ import { CurrenciesService } from '../../services/currencies/currencies.service'
 import { CurrenciesPage } from '../../models/currencies-page.model';
 import { Observable } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-currencies',
   templateUrl: './currencies.component.html',
@@ -20,13 +21,18 @@ export class CurrenciesComponent implements OnInit {
   filter = '';
   filterType = this.filterTypes[0];
 
-  constructor(private currenciesSrv: CurrenciesService) {
+  constructor(private currenciesSrv: CurrenciesService,
+    private router: Router) {
 
   }
 
   ngOnInit() {
 
     this.doFilter();
+  }
+
+  getCurrencyDetails(id: string) {
+    this.router.navigate(['currency/', id]);
   }
 
   doFilter(filter: string = '', filterType: string = this.filterTypes[0]) {
