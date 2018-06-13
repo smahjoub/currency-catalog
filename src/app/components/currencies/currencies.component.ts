@@ -4,6 +4,7 @@ import { CurrenciesPage } from '../../models/currencies-page.model';
 import { Observable } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { CurrenciesFilter, FilterType } from '../../models/currencies-filter.model';
 @Component({
   selector: 'app-currencies',
   templateUrl: './currencies.component.html',
@@ -27,7 +28,6 @@ export class CurrenciesComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.doFilter();
   }
 
@@ -36,30 +36,10 @@ export class CurrenciesComponent implements OnInit {
   }
 
   doFilter(filter: string = '', filterType: string = this.filterTypes[0]) {
+    const s = <FilterType>FilterType[filterType];
+    const currenciesFilter = new CurrenciesFilter(s, filter);
 
-    //build filter query string
-    let queryString = '';
-    if (filter !== '') {
-      switch (filterType) {
-        case this.filterTypes[0]: //Id
-        queryString = `&filter[search]=${filter}`;
-        break;
-        case this.filterTypes[1]: //Code
-        queryString = `&filter[code_iso_alpha3]=${filter}`;
-        break;
-        case this.filterTypes[2]: //Name
-        queryString = `&filter[search]=${filter}`;
-        break;
-        case this.filterTypes[3]: //Type
-        queryString = `&filter[currency_type]=${filter}`;
-        break;
-        default: //Empty string
-        break;
-      }
-    }
-
-
-    this.currenciesSrv.getCurrencies(this.currentPage, this.pageSize, queryString)
+    this.currenciesSrv.getCurrencies(this.currentPage, this.pageSize, currenciesFilter)
       .subscribe(data => this.pageContent = data);
   }
 

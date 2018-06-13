@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CurrenciesPage } from '../../models/currencies-page.model';
-import { Http, Response } from '@angular/http';
 import { CurrenciesPageItem } from '../../models/currencies-page-item.model';
 import { map } from 'rxjs/operators';
 import { CurrencyDetails } from '../../models/currency-details.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { CurrenciesFilter } from '../../models/currencies-filter.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import { CurrencyDetails } from '../../models/currency-details.model';
 export class CurrenciesService {
 
   private apiUrl = 'https://api.openfintech.io/v1/';
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -20,17 +22,25 @@ export class CurrenciesService {
     const url = `${this.apiUrl}currencies/${id}`;
     return this.http.get(url)
     .pipe(
-      map(resp => this.jsonToCurrencyDetails(resp.json()))
+      map(resp => this.jsonToCurrencyDetails(resp))
     );
   }
 
-  getCurrencies(pageNumber: number, pageSize: number, filter: string = ''): Observable<CurrenciesPage> {
+  getCurrencies(pageNumber: number, pageSize: number, filter: CurrenciesFilter): Observable<CurrenciesPage> {
+    let params = new HttpParams();
 
-    const url = `${this.apiUrl}currencies?page[number]=${pageNumber}&page[size]=${pageSize}${filter}`;
+    if (filter.isEmptyFilter() === false) {
+      params = filter.getParams();
+    }
 
-    return this.http.get(url)
+    params = params.append('page[number]', pageNumber.toString());
+    params = params.append('page[size]', pageSize.toString());
+
+    const url = `${this.apiUrl}currencies`;
+
+    return this.http.get(url, {params: params})
     .pipe(
-      map(resp => this.jsonToCurrenciesPage(resp.json()))
+      map(resp => this.jsonToCurrenciesPage(resp))
     );
   }
 
