@@ -36,8 +36,7 @@ export class CurrenciesComponent implements OnInit {
   }
 
   doFilter(filter: string = '', filterType: string = this.filterTypes[0]) {
-    const s = <FilterType>FilterType[filterType];
-    const currenciesFilter = new CurrenciesFilter(s, filter);
+    const currenciesFilter = new CurrenciesFilter(FilterType[filterType], filter);
 
     this.currenciesSrv.getCurrencies(this.currentPage, this.pageSize, currenciesFilter)
       .subscribe(data => this.pageContent = data);
